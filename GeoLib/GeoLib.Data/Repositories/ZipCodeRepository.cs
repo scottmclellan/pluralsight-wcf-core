@@ -9,6 +9,7 @@ namespace GeoLib.Data
 {
     public class ZipCodeRepository : DataRepositoryBase<ZipCode, GeoLibDbContext>, IZipCodeRepository
     {
+
         protected override DbSet<ZipCode> DbSet(GeoLibDbContext entityContext)
         {
             return entityContext.ZipCodeSet;
@@ -39,28 +40,18 @@ namespace GeoLib.Data
             }
         }
 
-        public IEnumerable<ZipCode> GetByState(string state)
+        public IQueryable<ZipCode> GetByState(string state)
         {
-            using (GeoLibDbContext entityContext = new GeoLibDbContext())
-            {
-                return entityContext.ZipCodeSet
-                    .Include(e => e.State)
-                    .Where(e => e.State.Abbreviation == state).ToFullyLoaded();
-            }
+            return GetQuery(e => e.State.Name == state, e => e.State);
         }
 
-        public IEnumerable<ZipCode> GetZipsForRange(ZipCode zip, int range)
+        public IQueryable<ZipCode> GetZipsForRange(ZipCode zip, int range)
         {
-            using (GeoLibDbContext entityContext = new GeoLibDbContext())
-            {
-                double degrees = range / 69.047;
+            double degrees = range / 69.047;
 
-                return entityContext.ZipCodeSet
-                    .Include(e => e.State)
-                    .Where(e => (e.Latitude <= zip.Latitude + degrees && e.Latitude >= zip.Latitude - degrees) &&
-                                (e.Longitude <= zip.Longitude + degrees && e.Longitude >= zip.Longitude - degrees))
-                    .ToFullyLoaded();
-            }
+            return GetQuery(e => (e.Latitude <= zip.Latitude + degrees && e.Latitude >= zip.Latitude - degrees) &&
+                            (e.Longitude <= zip.Longitude + degrees && e.Longitude >= zip.Longitude - degrees), e => e.State);
+
         }
     }
 }

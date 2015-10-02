@@ -10,7 +10,8 @@ namespace GeoLib.Data
     public interface IZipCodeRepository : IDataRepository<ZipCode>
     {
         ZipCode GetByZip(string zip);
-        IEnumerable<ZipCode> GetByState(string state);
-        IEnumerable<ZipCode> GetZipsForRange(ZipCode zip, int range);
+        IQueryable<ZipCode> GetByState(string state);
+        IQueryable<ZipCode> GetZipsForRange(ZipCode zip, int range);
+        IQueryable<ZipCode> GetZipsQueryable(Expression<Func<ZipCode, bool>> wherePredicate);
     }
 }

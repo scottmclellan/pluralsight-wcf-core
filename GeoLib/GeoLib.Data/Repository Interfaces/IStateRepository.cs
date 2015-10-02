@@ -11,5 +11,6 @@ namespace GeoLib.Data
     {
         State Get(string abbrev);
         IEnumerable<State> Get(bool primaryOnly);
+        IQueryable<State> GetQuery(Expression<Func<State, bool>> wherePredicate);
     }
 }
