@@ -12,6 +12,7 @@ namespace GeoLib.Data
         protected override DbSet<State> DbSet(GeoLibDbContext entityContext)
         {
             return entityContext.StateSet;
+
         }
 
         protected override Expression<Func<State, bool>> IdentifierPredicate(GeoLibDbContext entityContext, int id)
