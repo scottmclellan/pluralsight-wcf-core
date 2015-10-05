@@ -37,9 +37,9 @@ namespace GeoLib.Data
             }
         }
 
-        public IQueryable<State> Get(bool primaryOnly)
+        public IEnumerable<State> Get(bool primaryOnly)
         {
-            return GetQuery(x => x.IsPrimaryState == primaryOnly);
+            return GetQuery(x => x.IsPrimaryState == primaryOnly).ToList();
         }
     }
 }

@@ -25,9 +25,9 @@ namespace GeoLib.Core
             return DbSet(entityContext).ToFullyLoaded();
         }
 
-        IQueryable<T> GetEntitiesQueryable(U entityContext, Expression<Func<T, bool>> wherePredicate, Expression<Func<T, object>>[] includeProperties)
+        IEnumerable<T> GetEntities(U entityContext, Expression<Func<T, bool>> wherePredicate, Expression<Func<T, object>>[] includeProperties)
         {
-            return DbSet(entityContext).IncludeMultiple(includeProperties).Where(wherePredicate);
+            return DbSet(entityContext).IncludeMultiple(includeProperties).Where(wherePredicate).ToList();
         }
 
         T GetEntity(U entityContext, int id)
@@ -96,10 +96,10 @@ namespace GeoLib.Core
         }
 
 
-        protected IQueryable<T> GetQuery(Expression<Func<T, bool>> wherePredicate, params Expression<Func<T, object>>[] includeProperties)
+        protected IEnumerable<T> GetQuery(Expression<Func<T, bool>> wherePredicate, params Expression<Func<T, object>>[] includeProperties)
         {
             using (U entityContext = new U())
-                return GetEntitiesQueryable(entityContext,wherePredicate, includeProperties); 
+                return GetEntities(entityContext,wherePredicate, includeProperties).ToList(); 
         }
     }
 }

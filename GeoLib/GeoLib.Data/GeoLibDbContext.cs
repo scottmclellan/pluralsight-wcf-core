@@ -14,6 +14,7 @@ namespace GeoLib.Data
         public GeoLibDbContext()
             : base("name=main")
         {
+            bool instanceExists = System.Data.Entity.SqlServer.SqlProviderServices.Instance != null;
             Database.SetInitializer<GeoLibDbContext>(null);
         }
 

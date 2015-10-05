@@ -79,7 +79,7 @@ namespace GeoLib.Services
 
             if (stateEntities == null) return null;
 
-            return stateEntities.Select(x => x.Name).ToList();
+            return stateEntities.Select(x => x.Name);
 
         }
 
@@ -89,7 +89,7 @@ namespace GeoLib.Services
 
             if (zipCodeEntities == null) return null;
 
-            return zipCodeEntities.Select(x => new ZipCodeData() { City = x.City, State = x.State.Name, ZipCode = x.Zip }).ToList();
+            return zipCodeEntities.Select(x => new ZipCodeData() { City = x.City, State = x.State.Name, ZipCode = x.Zip });
         }
 
         public IEnumerable<ZipCodeData> GetZips(string zip, int range)
@@ -100,7 +100,7 @@ namespace GeoLib.Services
 
             if(zipCodeEntities == null) return null;
 
-            return zipCodeEntities.Select(x => new ZipCodeData() { City = x.City, State = x.State.Name, ZipCode = x.Zip }).ToList();
+            return zipCodeEntities.Select(x => new ZipCodeData() { City = x.City, State = x.State.Name, ZipCode = x.Zip });
         }
     }
 }

@@ -24,7 +24,7 @@ namespace GeoLib.Core
 
             foreach(var include in includeProperties)
             {
-                query.Include(include);
+                query = query.Include(include);
             }
 
             return query;

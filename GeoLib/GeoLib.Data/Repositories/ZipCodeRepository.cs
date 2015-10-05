@@ -40,17 +40,17 @@ namespace GeoLib.Data
             }
         }
 
-        public IQueryable<ZipCode> GetByState(string state)
+        public IEnumerable<ZipCode> GetByState(string stateCode)
         {
-            return GetQuery(e => e.State.Name == state, e => e.State);
+            return GetQuery(e => e.State.Abbreviation == stateCode, e => e.State).ToList();
         }
 
-        public IQueryable<ZipCode> GetZipsForRange(ZipCode zip, int range)
+        public IEnumerable<ZipCode> GetZipsForRange(ZipCode zip, int range)
         {
             double degrees = range / 69.047;
 
             return GetQuery(e => (e.Latitude <= zip.Latitude + degrees && e.Latitude >= zip.Latitude - degrees) &&
-                            (e.Longitude <= zip.Longitude + degrees && e.Longitude >= zip.Longitude - degrees), e => e.State);
+                            (e.Longitude <= zip.Longitude + degrees && e.Longitude >= zip.Longitude - degrees), e => e.State).ToList();
 
         }
     }

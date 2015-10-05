@@ -55,5 +55,13 @@ namespace GeoLib.WindowsHost
             _hostGeoManager.Close();
 
         }
+
+        //#region Fixes Entity Framework Error
+
+        //private void EFBugFix()
+        //{
+        //    var instanceExists = System.Data.Entity.SqlServer.SqlProviderServices.Instance != null;
+        //}
+        //#endregion
     }
 }

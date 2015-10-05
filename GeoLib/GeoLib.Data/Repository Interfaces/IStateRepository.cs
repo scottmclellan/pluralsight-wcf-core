@@ -10,6 +10,6 @@ namespace GeoLib.Data
     public interface IStateRepository : IDataRepository<State>
     {
         State Get(string abbrev);
-        IQueryable<State> Get(bool primaryOnly);
+        IEnumerable<State> Get(bool primaryOnly);
     }
 }
