@@ -12,6 +12,5 @@ namespace GeoLib.Data
         ZipCode GetByZip(string zip);
         IQueryable<ZipCode> GetByState(string state);
         IQueryable<ZipCode> GetZipsForRange(ZipCode zip, int range);
-        IQueryable<ZipCode> GetZipsQueryable(Expression<Func<ZipCode, bool>> wherePredicate);
     }
 }

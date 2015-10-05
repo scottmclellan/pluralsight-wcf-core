@@ -10,7 +10,6 @@ namespace GeoLib.Data
     public interface IStateRepository : IDataRepository<State>
     {
         State Get(string abbrev);
-        IEnumerable<State> Get(bool primaryOnly);
-        IQueryable<State> GetQuery(Expression<Func<State, bool>> wherePredicate);
+        IQueryable<State> Get(bool primaryOnly);
     }
 }

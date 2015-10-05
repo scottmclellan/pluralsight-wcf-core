@@ -37,12 +37,9 @@ namespace GeoLib.Data
             }
         }
 
-        public IEnumerable<State> Get(bool primaryOnly)
+        public IQueryable<State> Get(bool primaryOnly)
         {
-            using (GeoLibDbContext entityContext = new GeoLibDbContext())
-            {
-                return entityContext.StateSet.Where(e => e.IsPrimaryState == primaryOnly).ToFullyLoaded();
-            }
+            return GetQuery(x => x.IsPrimaryState == primaryOnly);
         }
     }
 }

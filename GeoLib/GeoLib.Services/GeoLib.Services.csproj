@@ -49,6 +49,10 @@
       <Project>{b8477f7b-9cdd-4d17-b614-56b551500716}</Project>
       <Name>GeoLib.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GeoLib.Core\GeoLib.Core.csproj">
+      <Project>{461922d9-747f-4bb0-ac2e-4737139eedb6}</Project>
+      <Name>GeoLib.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GeoLib.Data\GeoLib.Data.csproj">
       <Project>{db2ca02f-5d34-4734-8a44-634bfd381244}</Project>
       <Name>GeoLib.Data</Name>
